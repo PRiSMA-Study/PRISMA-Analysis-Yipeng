@@ -1,8 +1,7 @@
 
 ```{r}
-#Define outcome variable for anemia
+#Dataset for analysis
 df2 <-  temp_df %>% filter(!is.na(M06_SPHB_LBORRES)&!is.na(M08_CBC_HB_LBORRES))
-
 ```
 
 ```{r}
