@@ -1,0 +1,46 @@
+
+```{r}
+#Define outcome variable for anemia
+df2 <-  temp_df %>% filter(!is.na(M06_SPHB_LBORRES)&!is.na(M08_CBC_HB_LBORRES))
+
+```
+
+```{r}
+library(lme4)
+library(irr)
+glm_model_CBC <- lmer(M08_CBC_HB_LBORRES ~ 1 + (1 | MOMID) + (1 | SITE) + (1 | TYPE_VISIT),
+                    data = df2)
+glm_model_SPHB <- lmer(M06_SPHB_LBORRES ~ 1 + (1 | MOMID) + (1 | SITE) + (1 | TYPE_VISIT),
+                    data = df2)
+
+# Predict measurements from both devices# Predict measurements from both devicesTYPE_VISIT
+df2$predicted_CBC<- predict(glm_model_CBC, newdata = df2)
+df2$predicted_SPHB <- predict(glm_model_SPHB, newdata = df2)
+
+# Convert predicted probabilities to binary outcomes (diseased/non-diseased)
+df2$predicted_CBC_binary <- ifelse(df2$predicted_CBC < 11 | df2$predicted_CBC > 13 , 1, 0)
+df2$predicted_SPHB_binary <- ifelse(df2$predicted_SPHB < 11 | df2$predicted_SPHB > 13 , 1, 0)
+
+# Check expected structure
+str(df2$predicted_CBC_binary)
+str(df2$predicted_SPHB_binary)
+
+# Check for NA values in the binary outcome 
+if (any(is.na(df2$predicted_CBC_binary)) || any(is.na(df2$predicted_SPHB_binary))) {
+  stop("NA values detected in the binary outcome vectors")
+}
+
+# Print lengths of the vectors
+cat("Length of predicted_CBC_binary:", length(df2$predicted_CBC_binary), "\n")
+cat("Length of predicted_SPHB_binary:", length(df2$predicted_SPHB_binary), "\n")
+
+# Print unique values in each vector
+cat("Unique values in predicted_CBC_binary:", unique(df2$predicted_CBC_binary), "\n")
+cat("Unique values in predicted_SPHB_binary:", unique(df2$predicted_SPHB_binary), "\n")
+
+# Compute Cohen's kappa
+kappa_result <- kappa2(df2[, c( "predicted_SPHB_binary", "predicted_CBC_binary")])
+
+# Print the result
+print(kappa_result)
+```
