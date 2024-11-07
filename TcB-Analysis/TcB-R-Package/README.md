@@ -5,19 +5,19 @@ The TSB threshold is based on the type of threshold(Phototherapy/Exchange Transf
 ```r
 library(TCB)
 #threshold:
-###"P0":Phototherapy thresholds with no hyperbilirubinemia neurotoxicity risk factor
-###"P1":Phototherapy thresholds with a recognized hyperbilirubinemia neurotoxicity risk factor
-###"E0":Exchange transfusion thresholds with no recognized hyperbilirubinemia neurotoxicity risk factors other than gestational age
-###"E1":Exchange transfusion thresholds with any recognized hyperbilirubinemia neurotoxicity risk factors other than gestational age
+###"P0":Phototherapy thresholds with no hyperbilirubinemia neurotoxicity risk factor (NICE guideline)
+###"P1":Phototherapy thresholds with a recognized hyperbilirubinemia neurotoxicity risk factor (AAP guideline) 
+###"E0":Exchange transfusion thresholds with no recognized hyperbilirubinemia neurotoxicity risk factors other than gestational age (NICE guideline)
+###"E1":Exchange transfusion thresholds with any recognized hyperbilirubinemia neurotoxicity risk factors other than gestational age (AAP guideline)
 
 #GA:
-###"35 weeks"
+###"23 weeks"
+###"24 weeks"
+###"25 weeks"
+...
 ###"36 weeks"
 ###"37 weeks"
 ###">= 38 weeks"
-###"38 weeks"(Only applies to Phototherapy thresholds with no hyperbilirubinemia neurotoxicity risk factor, i.e. threshold="P0")
-###"39 weeks"(Only applies to Phototherapy thresholds with no hyperbilirubinemia neurotoxicity risk factor, i.e. threshold="P0")
-###">= 40 weeks"(Only applies to Phototherapy thresholds with no hyperbilirubinemia neurotoxicity risk factor, i.e. threshold="P0")
 
 #days:
 ###From 0 to 14
@@ -27,6 +27,6 @@ library(TCB)
 ```
 # Example
 ```r
-TSB(threshold = "P0", GA = "39 weeks", days = 2, hours = 15)
-[1] 18.5
+TSB(threshold = "P0", GA = "37 weeks", days = 2, hours = 15)
+[1] 14.1
 ```
