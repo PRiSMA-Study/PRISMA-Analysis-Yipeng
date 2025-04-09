@@ -3,7 +3,7 @@ The TSB threshold (AAP) is based on the type of treatment (Phototherapy/Exchange
 
 # Variables
 ```r
-library(TCB)
+library(TSB.AAP)
 #threshold:
 ###"P0":Phototherapy thresholds with no hyperbilirubinemia neurotoxicity risk factor (AAP guideline)
 ###"P1":Phototherapy thresholds with a recognized hyperbilirubinemia neurotoxicity risk factor (AAP guideline) 
