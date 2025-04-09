@@ -1,14 +1,12 @@
 # Description
-The TSB threshold is based on the type of threshold(Phototherapy/Exchange Transfusion), risk factors, gastational age when baby was born, and actual age of baby. Users may input the threshold types, gastational age, actual age(days), actual age(hours) to get TSB threshold (mg/dL)
+The TSB threshold (NICE) is based on the type of treatment (Phototherapy/Exchange Transfusion), gastational age when baby was born, and the actual age of baby. Users may input the treatment types, gastational age, actual age(days), actual age(hours) to get TSB threshold (mg/dL)
 
 # Variables
 ```r
-library(TCB)
+library(TSB.NICE)
 #threshold:
 ###"P0":Phototherapy thresholds with no hyperbilirubinemia neurotoxicity risk factor (NICE guideline)
-###"P1":Phototherapy thresholds with a recognized hyperbilirubinemia neurotoxicity risk factor (AAP guideline) 
 ###"E0":Exchange transfusion thresholds with no recognized hyperbilirubinemia neurotoxicity risk factors other than gestational age (NICE guideline)
-###"E1":Exchange transfusion thresholds with any recognized hyperbilirubinemia neurotoxicity risk factors other than gestational age (AAP guideline)
 
 #GA:
 ###"23 weeks"
@@ -27,6 +25,6 @@ library(TCB)
 ```
 # Example
 ```r
-TSB(threshold = "P0", GA = "37 weeks", days = 2, hours = 15)
+TSB_NICE(threshold = "P0", GA = "37 weeks", days = 2, hours = 15)
 [1] 14.1
 ```
